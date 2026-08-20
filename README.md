@@ -1,84 +1,80 @@
 # Yaria Bridge
 
-Browser add-on (Firefox + Chromium) that sends videos and audio to the **Yaria** desktop app.
+Browser add-on for Firefox and Chromium that sends videos and audio to the [Yaria](https://yaria.live) desktop app.
 
-Detects media on the page and hands jobs to Yaria’s Downloads queue.
+It detects media on the page and hands jobs to Yaria’s Downloads queue. Files are saved by Yaria on your computer, not by the browser.
 
-## Pair with Yaria desktop
+## Pair with Yaria
 
-1. Run **Yaria** → Settings → **Bridge**
-2. Ensure integration is **Enabled** (`127.0.0.1:19547`)
-3. **Copy** the pairing token
-4. Open Yaria Bridge **Settings** → paste host/port/token → **Test connection**
-5. Browse a site → toolbar icon → **Download**
+1. Run Yaria → Settings → Bridge
+2. Turn integration on (`127.0.0.1:19547`)
+3. Copy the pairing token
+4. Open Yaria Bridge settings → paste host, port, and token → Test connection
+5. On a video page, open the toolbar popup → choose quality → Download
 
 ## Browsers
 
-| Browser | Supported |
-|---------|-----------|
-| Chrome / Chromium / Edge / Brave | Yes (Manifest V3) |
-| Firefox | Yes (Manifest V3, `gecko.id` set) |
+| Browser | Support |
+|---------|---------|
+| Chrome, Chromium, Edge, Brave | Manifest V3 (`service_worker`) |
+| Firefox | Manifest V3 (`background.scripts` in `manifest.firefox.json`) |
 
-One codebase. No separate Firefox fork required.
-
-## Can this be written in Go?
-
-**No — not the extension itself.**  
-Browsers only load **JavaScript / HTML / CSS** extensions.
-
-| Component | Language |
-|-----------|----------|
-| Extension (this repo) | JS |
-| Yaria desktop bridge / engine | Go (YariaApp / YariaPlus) |
-| Optional native messaging host | Go (later, if you want) |
-
-## Load unpacked (dev)
+## Load unpacked (development)
 
 ### Chromium
+
 1. Open `chrome://extensions`
-2. Enable **Developer mode**
-3. **Load unpacked** → select this folder (`YariaExtension`)
+2. Enable Developer mode
+3. Load unpacked → this repository folder
 
 ### Firefox
+
 1. Open `about:debugging#/runtime/this-firefox`
-2. **Load Temporary Add-on…**
-3. Pick `manifest.json` in this folder  
-   (uses `background.scripts` — Firefox disables `service_worker` on many builds)
+2. Load Temporary Add-on
+3. Choose `manifest.firefox.json` (or a build that uses it as `manifest.json`)
 
-### Chromium
-Uses `background.service_worker` (`sw-loader.js`). Same `manifest.json`.
+## Build store packages
 
-## Features (v0.1)
+```bash
+# Firefox
+cp manifest.firefox.json manifest.json
+npx web-ext build --overwrite-dest
+# restore Chromium manifest from git if needed
+```
 
-- Network media sniffing (`webRequest`)
-- DOM / player / `.m3u8` / `.mpd` / `og:video` detection
-- Toolbar popup with quality + audio-only
+Output: `web-ext-artifacts/`
+
+## Features
+
+- Detects media via network and page content
+- Popup with quality selection and audio-only option
 - Context menu: download page or link with Yaria
-- Badge count of detected items per tab
-- Settings: bridge host / port / token
-- Page URL fallback when nothing is sniffed
+- Badge when media is found
+- Settings for bridge host, port, and token
 
-## Bridge API (implemented in YariaApp)
+## Local bridge API (Yaria desktop)
 
-Default base: `http://127.0.0.1:19547`
+Base URL: `http://127.0.0.1:19547`
 
 ```http
 GET  /extension/ping
-POST /extension/download   Authorization: Bearer <token>
+POST /extension/download
 POST /extension/focus
 ```
 
-Disable in Yaria → Settings → Downloader → Browser integration.
+Authorization: `Bearer <token>` when a token is configured.
+
+Turn the bridge off in Yaria → Settings → Bridge.
 
 ## Layout
 
 ```text
-YariaExtension/
-├── manifest.json
+├── manifest.json           # Chromium
+├── manifest.firefox.json   # Firefox
 ├── icons/
 ├── src/
-│   ├── background/service-worker.js
-│   ├── content/detect.js
+│   ├── background/
+│   ├── content/
 │   ├── popup/
 │   ├── options/
 │   └── shared/
@@ -88,10 +84,10 @@ YariaExtension/
 ## Privacy
 
 - No cloud servers
-- Talks only to your configured localhost bridge
-- Host permission is required to see media URLs on pages you visit
-- Full policy (Chrome / Firefox store): **https://yaria.live/privacy-bridge**
+- Talks only to the localhost bridge you configure
+- Needs host access to see media URLs on pages you visit
+- Policy: https://yaria.live/privacy-bridge
 
 ## License
 
-Same product family as Yaria (yaria.live).
+MIT. Part of the Yaria product family ([yaria.live](https://yaria.live)).
