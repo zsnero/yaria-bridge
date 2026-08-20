@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yaria Bridge Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <img src="../../icons/icon48.png" alt="" width="40" height="40" />
+        <div>
+          <h1>Yaria Bridge</h1>
+          <p>Link this browser to the Yaria desktop app.</p>
+        </div>
+      </header>
+
+      <section class="card">
+        <h2>Desktop connection</h2>
+        <p class="note">
+          Yaria Bridge sends download jobs to the Yaria app on your computer.
+          Enable <strong>Bridge</strong> in Yaria Settings and paste the pairing token below.
+        </p>
+
+        <label class="field">
+          <span>Host</span>
+          <input id="host" type="text" spellcheck="false" placeholder="127.0.0.1" />
+        </label>
+        <label class="field">
+          <span>Port</span>
+          <input id="port" type="number" min="1" max="65535" placeholder="19547" />
+        </label>
+        <label class="field">
+          <span>Token</span>
+          <input id="token" type="password" spellcheck="false" placeholder="Pairing token from Yaria" />
+        </label>
+
+        <div class="row">
+          <button type="button" id="save" class="btn">Save</button>
+          <button type="button" id="test" class="btn btn-ghost">Test connection</button>
+          <span id="msg" class="msg"></span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>How it works</h2>
+        <ol>
+          <li>Open the Yaria desktop app.</li>
+          <li>Go to Settings → Bridge and turn integration on.</li>
+          <li>Copy the pairing token into this page.</li>
+          <li>On any video page, open Yaria Bridge, pick quality, and download.</li>
+          <li>The job appears on Yaria’s Downloads page.</li>
+        </ol>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

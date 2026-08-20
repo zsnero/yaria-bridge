@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yaria Bridge</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <img src="../../icons/icon32.png" alt="" width="22" height="22" />
+          <span>Yaria Bridge</span>
+        </div>
+        <div id="status" class="status status--unknown" title="Bridge status">…</div>
+      </header>
+
+      <section class="page-meta">
+        <div id="page-title" class="page-title">Scanning…</div>
+        <div id="page-url" class="page-url"></div>
+      </section>
+
+      <section class="toolbar">
+        <button type="button" id="btn-refresh" class="btn btn-ghost" title="Rescan">Refresh</button>
+        <label class="check">
+          <input type="checkbox" id="audio-only" />
+          Audio only
+        </label>
+      </section>
+
+      <main id="list" class="list" aria-live="polite"></main>
+
+      <footer class="footer">
+        <button type="button" id="btn-settings" class="linkish">Settings</button>
+        <span id="hint" class="hint">Downloads open in the Yaria app</span>
+      </footer>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

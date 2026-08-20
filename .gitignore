@@ -1,0 +1,8 @@
+*.zip
+*.xpi
+.DS_Store
+node_modules/
+dist/
+web-ext-artifacts/
+manifest.chrome.json
+package-lock.json

@@ -1,0 +1,11 @@
+dist/**
+web-ext-artifacts/**
+**/*.zip
+**/*.xpi
+.git/**
+README.md
+manifest.chrome.json
+manifest.firefox.json
+package.json
+package-lock.json
+node_modules/**

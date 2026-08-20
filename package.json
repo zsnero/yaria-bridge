@@ -1,0 +1,22 @@
+{
+  "name": "yaria-bridge",
+  "private": true,
+  "version": "0.1.1",
+  "webExt": {
+    "ignoreFiles": [
+      "dist",
+      "web-ext-artifacts",
+      "node_modules",
+      "package.json",
+      "package-lock.json",
+      "manifest.chrome.json",
+      "manifest.firefox.json",
+      "README.md",
+      "**/*.zip",
+      "**/*.xpi",
+      ".git",
+      ".gitignore",
+      ".web-ext-ignore"
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+:root {
+  color-scheme: dark;
+  --bg: #050510;
+  --panel: #12121e;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e4e4f0;
+  --dim: #8888a8;
+  --accent: #8b6cef;
+  --accent-hover: #a78bfa;
+  --green: #34d399;
+  --red: #f87171;
+  --font: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(139, 108, 239, 0.18), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font: 14px/1.5 var(--font);
+}
+
+.wrap {
+  width: min(680px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 64px;
+}
+
+.hero {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.hero img {
+  border-radius: 12px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.hero p {
+  margin: 4px 0 0;
+  color: var(--dim);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.note {
+  color: var(--dim);
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.field span {
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.field input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0b0b16;
+  color: var(--text);
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.field input:focus {
+  outline: 1px solid rgba(139, 108, 239, 0.6);
+  border-color: rgba(139, 108, 239, 0.45);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 9px 14px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.msg {
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.msg.ok {
+  color: var(--green);
+}
+
+.msg.err {
+  color: var(--red);
+}
+
+ol {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--dim);
+}
+
+.code {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #0b0b16;
+  border: 1px solid var(--border);
+  color: #c4b5fd;
+  font-size: 12px;
+  overflow: auto;
+}
